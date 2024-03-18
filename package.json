@@ -1,0 +1,17 @@
+{
+  "name": "social-network-challenge",
+  "version": "1.0.0",
+  "description": "This social network API is created with NoSQL and MangoDB, as well as Mongoose and Express.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "mongoose": "^8.2.2"
+  }
+}
