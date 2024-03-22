@@ -12,7 +12,7 @@ connection.once('open', async () => {
       await connection.dropCollection('thoughts');
     }
 
-    let usersCheck = await connection.db.listCollections({ name: 'students' }).toArray();
+    let usersCheck = await connection.db.listCollections({ name: 'users' }).toArray();
     if (usersCheck.length) {
       await connection.dropCollection('users');
     }
@@ -31,7 +31,7 @@ connection.once('open', async () => {
     const last = fullName.split(' ')[1];
     const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
-    students.push({
+    users.push({
       first,
       last,
       github,
@@ -44,13 +44,13 @@ connection.once('open', async () => {
 
   // Add courses to the collection and await the results
   await Thought.create({
-    courseName: 'UCLA',
+    thoughtName: 'Thought 1',
     inPerson: false,
-    students: [...studentData.map(({_id}) => _id)],
+    users: [...userData.map(({_id}) => _id)],
   });
 
   // Log out the seed data to indicate what should appear in the database
-  console.table(students);
+  console.table(users);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });
