@@ -11,6 +11,8 @@ const activity = cwd.includes('social-network-challenge')
   ? cwd.split('social-network-challenge')[1]
   : cwd;
 
+//   AskBCS helped create middleware for this file
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
