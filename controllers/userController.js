@@ -68,4 +68,34 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  // Add a reaction
+  async addReaction(req, res) {
+    try {
+      const reaction = await Reaction.create(req.body);
+
+      await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { reactions: reaction._id } }
+      );
+
+      res.json(reaction);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  // Remove a reaction
+  async removeReaction(req, res) {
+    try {
+      await Reaction.findOneAndDelete({ _id: req.params.reactionId });
+
+      await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { reactions: req.params.reactionId } }
+      );
+
+      res.json({ message: 'Reaction deleted!' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
